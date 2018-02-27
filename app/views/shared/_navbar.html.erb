@@ -1,7 +1,16 @@
-<div class="navbar-wagon">
+<div class="navbar-phone">
   <!-- Logo -->
-  <%= link_to root_path, class: "navbar-wagon-brand" do %>
+  <%= link_to root_path, class: "navbar-phone-logo" do %>
     <%= image_tag "logo.png", height: 50 %>
   <% end %>
+    <!-- Search form -->
+  <div class="search-form">
+    <%= form_tag ads_index_path, method: :get do %>
+      <%= text_field_tag :query,
+        params[:query],
+        class: "form-control",
+        placeholder: "What are you looking for?"
+      %>
+    <% end %>
+  </div>
 </div>
-

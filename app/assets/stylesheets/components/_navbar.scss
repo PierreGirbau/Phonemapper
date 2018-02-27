@@ -1,20 +1,38 @@
 /* Main navbar */
-.navbar-wagon {
-  height: 70px;
+.navbar-phone {
+  height: 65px;
   padding: 0px 30px;
+  position: sticky !important;
+  top: 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   background: -webkit-linear-gradient(left, #11998E, #38EF7D);
   transition: 0.2s background-color ease;
+  .search-form {
+    display: none;
+  }
 }
 /* Logo */
-.navbar-wagon-brand {
+.navbar-phone-logo {
   margin: auto;
-  padding-top: 15px;
+  padding-top: 5px;
 }
-
+/* Search form */
+.search-form {
+  margin: auto;
+  padding-top: 5px;
+}
 /* Navbar search */
-.navbar-wagon-search {
+.navbar-phone-search {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
+  background: white !important;
+  color: $green;
+  .search-form {
+    display: flex;
+    margin-left: 15px;
+  }
+  .navbar-phone-logo {
+    margin: 0;
+  }
 }
