@@ -1,0 +1,28 @@
+
+.footer-fixed-bottom {
+  background: #FFF;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: $footer-height;
+  padding: 0px 30px;
+  color: rgba(0,0,0,0.3);
+}
+.footer-links {
+  display: flex;
+  align-items: center;
+}
+.footer-links a {
+  color: #11998e;
+  text-decoration: none;
+  font-size: 24px;
+  padding: 0px 10px;
+}
+.footer-links a:hover {
+  opacity:0.6;
+}
+.footer-copyright h1 {
+  font-family: Open Sans;
+  font-size: 14px;
+  color: #11998e;
+}
