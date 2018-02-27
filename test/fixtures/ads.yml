@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  title: MyString
+  description: MyText
+  url: MyString
+  date: 2018-02-27 11:44:56
+  price: 1
+  simlock: MyString
+  zipcode: 1
+  city: 1
+  picture: one
+  product: one
+
+two:
+  title: MyString
+  description: MyText
+  url: MyString
+  date: 2018-02-27 11:44:56
+  price: 1
+  simlock: MyString
+  zipcode: 1
+  city: 1
+  picture: two
+  product: two
