@@ -4,13 +4,5 @@
     <%= image_tag "logo.png", height: 50 %>
   <% end %>
     <!-- Search form -->
-  <div class="search-form">
-    <%= form_tag ads_index_path, method: :get do %>
-      <%= text_field_tag :query,
-        params[:query],
-        class: "form-control",
-        placeholder: "What are you looking for?"
-      %>
-    <% end %>
-  </div>
+    <%= render 'shared/search' %>
 </div>
