@@ -1,0 +1,21 @@
+.content {
+  display: flex;
+  align-items: center;
+  padding-left: 155px;
+}
+.search-icon {
+  padding-right: 10px;
+}
+.form-control {
+  width: 130%;
+  border-radius: 5px;
+  box-shadow: 7px 9px 31px -13px rgba(0,0,0,0.75);
+  border-style: none;
+  text-align: center;
+  color: $green;
+  background-color: white;
+}
+.form-control:hover {
+  opacity: 0.9;
+  color: $green;
+}

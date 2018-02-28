@@ -1,10 +1,10 @@
 function initUpdateNavbarOnScroll() {
-  const navbar = document.querySelector('.navbar-wagon');
+  const navbar = document.querySelector('.navbar-phone');
   window.addEventListener('scroll', () => {
     if (window.scrollY >= window.innerHeight) {
-      navbar.classList.add('navbar-wagon-search');
+      navbar.classList.add('navbar-phone-search');
     } else {
-      navbar.classList.remove('navbar-wagon-search');
+      navbar.classList.remove('navbar-phone-search');
     }
   });
 }
