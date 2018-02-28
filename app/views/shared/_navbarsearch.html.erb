@@ -1,0 +1,10 @@
+<div class="navbar-content">
+  <div class="navbar-search-icon">
+    <span class="icon"><i class="fa fa-search"></i></span>
+  </div>
+  <div class="navbar-search-form">
+    <%= form_tag ads_index_path, method: :get do %>
+      <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "What are you looking for?", style: "width: 250px;" %>
+    <% end %>
+  </div>
+</div>

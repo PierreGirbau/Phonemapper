@@ -1,6 +1,10 @@
-<div class="search-form">
-  <span class="icon"><i class="fa fa-search"></i></span>
-  <%= form_tag ads_index_path, method: :get do %>
-    <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "What are you looking for?" %>
-  <% end %>
+<div class="content">
+  <div class="search-icon">
+    <span class="icon"><i class="fa fa-search"></i></span>
+  </div>
+  <div class="search-form">
+    <%= form_tag ads_index_path, method: :get do %>
+      <%= text_field_tag :query, params[:query], class: "form-control", placeholder: "What are you looking for?" %>
+    <% end %>
+  </div>
 </div>
