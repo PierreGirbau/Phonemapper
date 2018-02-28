@@ -1,5 +1,5 @@
 class Ad < ApplicationRecord
-  belongs_to :picture
+  has_many :pictures
   belongs_to :product
 
   include PgSearch
