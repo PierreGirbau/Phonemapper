@@ -15,8 +15,7 @@
 }
 /* Logo */
 .navbar-phone-logo {
-  margin: auto;
-  padding-top: auto;
+  display: none
 }
 /* Search form */
 .navbar-search-form {
@@ -35,11 +34,15 @@
     align-items: center;
     justify-content: space-between;
   }
+  .form-control {
+    box-shadow: none;
+    opacity: 0.7;
+  }
   .navbar-search-icon {
     padding-top: auto;
     padding-right: 6px;
   }
   .navbar-phone-logo {
-    margin: 0;
+    display: flex;
   }
 }
