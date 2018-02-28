@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180227104456) do
+ActiveRecord::Schema.define(version: 20180228170811) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -21,14 +21,11 @@ ActiveRecord::Schema.define(version: 20180227104456) do
     t.string "url"
     t.datetime "date"
     t.integer "price"
-    t.string "simlock"
-    t.integer "zipcode"
-    t.integer "city"
-    t.bigint "picture_id"
+    t.string "source"
     t.bigint "product_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["picture_id"], name: "index_ads_on_picture_id"
+    t.string "location"
     t.index ["product_id"], name: "index_ads_on_product_id"
   end
 
@@ -42,6 +39,8 @@ ActiveRecord::Schema.define(version: 20180227104456) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "ad_id"
+    t.index ["ad_id"], name: "index_pictures_on_ad_id"
   end
 
   create_table "products", force: :cascade do |t|
@@ -74,7 +73,7 @@ ActiveRecord::Schema.define(version: 20180227104456) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "ads", "pictures"
   add_foreign_key "ads", "products"
+  add_foreign_key "pictures", "ads"
   add_foreign_key "products", "brands"
 end
