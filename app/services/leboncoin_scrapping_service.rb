@@ -19,7 +19,7 @@ class LeboncoinScrappingService
       url = "https://www.leboncoin.fr/annonces/offres/?o=#{i}&q=#{@name.downcase}%20#{@version}&location=#{@location}"
       html_file = open(url).read
       html_doc = Nokogiri::HTML(html_file)
-      break if !html_doc.xpath('//article[contains(@class, "noResult")]').text.empty? || i > 20
+      break if !html_doc.xpath('//article[contains(@class, "noResult")]').text.empty?
       puts "============================ PAGE #{i} ============================="
       lbc_result_page_scrapper(html_doc)
       i += 1
@@ -72,12 +72,17 @@ class LeboncoinScrappingService
         img_div_array.uniq!
         puts img_div_array
 
+        puts "- - - - - - - - - - - - - - - - -"
+        puts "Creating ad"
+        puts @version
+        #product = Product.where(version: @version, capacity: 0, color: 'unknown')
+
+        Ad.new(title: ad_title, description: ad_description, date: ad_datetime, location: ad_location, price: ad_price, source: "leboncoin")
         puts "--------------------------------"
-      # Ad.create!(title: title, )
-    end
+      end
     end
   end
 end
 
-LeboncoinScrappingService.new(name: 'Iphone', version: '7', location: 'Lyon').lbc_iterate_over_result_pages
+LeboncoinScrappingService.new(name: 'Iphone', version: '3GS', location: 'Lyon').lbc_iterate_over_result_pages
 

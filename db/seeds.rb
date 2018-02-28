@@ -69,7 +69,7 @@ html_doc.search('h2').each do |element|
         Product.create!(brand: apple, name: "iPhone", version: version, capacity: cap.to_i, color: color, price: 1000, picture: image_link_hash[version.downcase])
       end
     end
-
+    Product.create!(brand: apple, name: "iPhone", version: version, capacity: 0, color: "unknown", price: 1000, picture: image_link_hash[version.downcase])
   end
 end
 
