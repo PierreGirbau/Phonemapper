@@ -9,28 +9,35 @@
   justify-content: space-between;
   background: -webkit-linear-gradient(left, #11998E, #38EF7D);
   transition: 0.2s background-color ease;
-  .search-form {
+  .navbar-content {
     display: none;
   }
 }
 /* Logo */
 .navbar-phone-logo {
   margin: auto;
-  padding-top: 5px;
+  padding-top: auto;
 }
 /* Search form */
-.search-form {
+.navbar-search-form {
   margin: auto;
-  padding-top: 5px;
+  padding-top: auto;
 }
 /* Navbar search */
 .navbar-phone-search {
   box-shadow: 0 1px 5px 0 rgba(0,0,0,0.07),0 1px 0 0 rgba(0,0,0,0.03);
   background: white !important;
   color: $green;
-  .search-form {
+  .navbar-content {
+    position: absolute;
+    padding-left: 70px;
     display: flex;
-    margin-left: 15px;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .navbar-search-icon {
+    padding-top: auto;
+    padding-right: 6px;
   }
   .navbar-phone-logo {
     margin: 0;
