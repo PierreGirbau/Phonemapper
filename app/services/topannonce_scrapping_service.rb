@@ -7,7 +7,7 @@ class TopannonceScrapping
     @name = attributes[:name]
     @version = attributes[:version]
     @location = attributes[:location]
-    @ads_page = []
+    @ads_pages = []
   end
 
   def topannonce_iterate_over_result_pages
@@ -32,23 +32,15 @@ class TopannonceScrapping
         localite = element.search('.localite').first.text.strip
         city = localite.gsub(/[^a-zA-Z]/,'').to_s
         zipcode = localite.gsub(/\D/, '')
+        location = city + " " + zipcode
         description = element.search('.detail').first.text.strip
         link = element.css('annonce-title a').map { |link| link['href'] }
         #pic = Picture.new(url: element.at('img')['src'])
         price = element.search('.price').first.text.strip
-        ads_array << Ad.new(title: title, city: city, zipcode: zipcode, price: price, description: description)
+        ads_array << Ad.new(title: title, location: location, price: price, description: description, url: link)
       end
     return ads_array
   end
 
-end # end class
-
-ads = TopannonceScrapping.new()
-ads.topannonce_iterate_over_result_pages
-
-ads.each do |page|
-  page.each do |ads|
-    puts ads
-  end
 end
 
