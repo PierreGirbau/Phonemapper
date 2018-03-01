@@ -1,0 +1,12 @@
+<h1><%= "#{@product.brand.name} #{@product.name} #{@product.version} #{@product.capacity}GB" %></h1>
+<div>
+  <ul>
+    <% @ads.each do |ad| %>
+      <li>
+        <%= link_to "#{ad.title} ||| #{ad.price} euros", ad_path(ad) %> (<%=ad.location %>) |<%= ad.source %>
+       </li>
+    <% end %>
+  </ul>
+</div>
+
+<%= link_to "Back to products list", root_path(anchor: 'products'), class: "btn btn-success" %>

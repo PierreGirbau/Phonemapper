@@ -1,8 +1,7 @@
 <h1><%= @ad.title %></h1>
+<h5>Annonce parue le <%= @ad.date.strftime('%d/%m/%Y à %Hh%M') %> sur <%= @ad.source %></h5>
 <h3><%= @ad.price %> euros</h3>
-
 <h5><%= @ad.location %></h5>
-<h5><%= @ad.date.strftime('%d/%m/%Y à %Hh%M') %></h5>
 
 <p><%= @ad.description.html_safe %></p>
 
@@ -11,5 +10,5 @@
   <%= image_tag pic.url, width: 200 %>
 <% end %>
 <br>
-<%= link_to "Back to ads index", ads_path, class: "btn btn-success" %>
-<%= link_to "Voir l'annonce", @ad.url, class: "btn btn-primary", target: "_blank" %>
+<%= link_to "Back to search results", product_path(@ad.product), class: "btn btn-success" %>
+<%= link_to "Voir l'annonce sur #{@ad.source}", @ad.url, class: "btn btn-primary", target: "_blank" %>

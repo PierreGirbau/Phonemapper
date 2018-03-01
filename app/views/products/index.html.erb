@@ -1,0 +1,10 @@
+<h1>Products#index</h1>
+<div>
+  <ul>
+    <% @products.each do |product| %>
+      <li>
+        <%= link_to "#{product.brand.name} #{product.name} #{product.version}", product_path(product) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
