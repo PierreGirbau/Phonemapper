@@ -6,4 +6,5 @@ Rails.application.routes.draw do
   root to: 'pages#home'
 
   resources :ads, only: [:index, :show]
+  resources :products, only: [:index, :show]
 end

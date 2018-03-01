@@ -4,6 +4,16 @@
 <div class="container">
   <div class="page-content" id="products">
     <h1>Our best deals</h1>
+    <div id="products">
+      <ul>
+        <% @products.each do |product| %>
+          <li>
+            <%= link_to "#{product.brand.name} #{product.name} #{product.version}", product_path(product) %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+
   </div>
 </div>
 <!-- search, Display Results -->
