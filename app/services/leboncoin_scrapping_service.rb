@@ -10,6 +10,7 @@ class LeboncoinScrappingService
     @name = attributes[:name]
     @version = attributes[:version]
     @location = attributes[:location]
+    @brand = attributes[:brand]
   end
 
   def lbc_iterate_over_result_pages
@@ -19,7 +20,7 @@ class LeboncoinScrappingService
       url = "https://www.leboncoin.fr/annonces/offres/?o=#{i}&q=#{@name.downcase}%20#{@version}&location=#{@location}"
       html_file = open(url).read
       html_doc = Nokogiri::HTML(html_file)
-      break if !html_doc.xpath('//article[contains(@class, "noResult")]').text.empty? || i > 20
+      break if !html_doc.xpath('//article[contains(@class, "noResult")]').text.empty? || i > 3
       puts "============================ PAGE #{i} ============================="
       lbc_result_page_scrapper(html_doc)
       i += 1
@@ -45,12 +46,13 @@ class LeboncoinScrappingService
         end
 
         # Retrieve price from product_card
+        ad_price = 0
         element.search('h3').each do |h3_result|
           if h3_result['itemprop'] == 'price'
             ad_price = h3_result['content'].to_i
-            puts "#{ad_price} euros"
           end
         end
+        puts "#{ad_price} euros"
 
         # Open product_page
         product_file = open(ad_url).read
@@ -72,12 +74,15 @@ class LeboncoinScrappingService
         img_div_array.uniq!
         puts img_div_array
 
+        puts "- - - - - - - - - - - - - - - - -"
+        puts "Creating product"
+        product = Product.find_by(version: @version, capacity: 0, color: 'unknown', brand: @brand)
+        ad = Ad.create!(title: ad_title, description: ad_description, url: ad_url, date: ad_datetime, location: ad_location, price: ad_price, source: "leboncoin", product: product)
+        img_div_array.each do |pic_url|
+          Picture.create!(url: pic_url, ad: ad)
+        end
         puts "--------------------------------"
-      # Ad.create!(title: title, )
-    end
+      end
     end
   end
 end
-
-LeboncoinScrappingService.new(name: 'Iphone', version: '7', location: 'Lyon').lbc_iterate_over_result_pages
-

@@ -7,11 +7,14 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 puts 'Cleaning database...'
+Picture.destroy_all
+Ad.destroy_all
 Product.destroy_all
+Brand.destroy_all
 
 puts 'Creating brands...'
-apple = Brand.new(name: 'Apple')
-samsung = Brand.new(name: 'Samsung')
+apple = Brand.create!(name: 'Apple')
+samsung = Brand.create!(name: 'Samsung')
 
 puts 'Creating products...'
 
@@ -69,7 +72,8 @@ html_doc.search('h2').each do |element|
         Product.create!(brand: apple, name: "iPhone", version: version, capacity: cap.to_i, color: color, price: 1000, picture: image_link_hash[version.downcase])
       end
     end
-
+    Product.create!(brand: apple, name: "iPhone", version: version, capacity: 0, color: "unknown", price: 1000, picture: image_link_hash[version.downcase])
+    LeboncoinScrappingService.new(name: 'iPhone', version: version, location: 'Paris', brand: apple).lbc_iterate_over_result_pages
   end
 end
 

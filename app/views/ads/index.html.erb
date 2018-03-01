@@ -1,2 +1,10 @@
 <h1>Ads#index</h1>
-<p>Find me in app/views/ads/index.html.erb</p>
+<div>
+  <ul>
+    <% @ads.each do |ad| %>
+      <li>
+        <%= link_to "#{ad.title} | #{ad.price} euros", ad_path(ad) %>
+      </li>
+    <% end %>
+  </ul>
+</div>
