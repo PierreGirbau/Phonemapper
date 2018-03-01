@@ -29,7 +29,11 @@
     <%#= stylesheet_pack_tag 'application', media: 'all' %> <!-- Uncomment if you import CSS in app/javascript/packs/application.js -->
   </head>
   <body>
-    <%= render 'shared/navbar' %>
+    <% if current_page?(root_path) %>
+      <%= render 'shared/navbar' %>
+    <% else %>
+      <%= render 'shared/navbarsearch' %>
+    <% end %>
     <%= render 'shared/flashes' %>
     <%= yield %>
     <%= render 'shared/footer' %>
