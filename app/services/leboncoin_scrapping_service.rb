@@ -32,7 +32,7 @@ class LeboncoinScrappingService
     # Identify each iPhone with the h2 tag
     html_doc.search('.tabsContent a').each do |element|
       ad_title = element.attribute('title').value
-      if ad_title.downcase.start_with?('iphone')
+      if ad_title.downcase.start_with?('iphone') || ad_title.downcase.start_with?('vend iphone') ||ad_title.downcase.start_with?('vends iphone')
 
         # Save product_page url
         ad_url = "https:#{element.attribute('href').value.split('?')[0]}"
