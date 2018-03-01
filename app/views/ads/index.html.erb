@@ -3,15 +3,15 @@
     <div class="row">
       <% @ads.each do |ad| %>
       <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url('https://kitt.lewagon.com/placeholder/cities/shanghai');">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url();">
           <div class="card-category">Best deal</div>
           <div class="card-description">
             <h2><%= link_to "#{ad.title}", ad_path(ad) %></h2>
-            <h2><%= "#{ad.price}" %></h2>
+            <h2><%= "#{ad.price}€" %></h2>
           </div>
           <a class="card-link" href="#" ></a>
         </div>
       </div>
-        <% end %>
+    <% end %>
   </div>
 </div>
