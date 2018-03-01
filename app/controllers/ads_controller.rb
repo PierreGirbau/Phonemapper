@@ -2,7 +2,7 @@ class AdsController < ApplicationController
   before_action :set_ad, only: [:show]
 
   def index
-    @ads = Ad.all
+    @ads = Ad.all.limit(50).order('price asc')
   end
 
   def show
