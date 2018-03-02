@@ -1,12 +1,30 @@
 <h1><%= "#{@product.brand.name} #{@product.name} #{@product.version} #{@product.capacity}GB" %></h1>
-<div>
-  <ul>
-    <% @ads.each do |ad| %>
-      <li>
-        <%= link_to "#{ad.title} ||| #{ad.price} euros", ad_path(ad) %> (<%=ad.location %>) |<%= ad.source %>
-       </li>
-    <% end %>
-  </ul>
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-12">
+      <ul>
+        <% @ads.each do |ad| %>
+          <div class="message" id="ad#{<% ad.id %>}">
+           <%= image_tag Picture.find_by(ad: ad).url, class: "avatar-large" %>
+           <div class="message-name">
+             <h3><%= ad.date.strftime('%d/%m/%Y') %></h3>
+             <p><%= ad.date.strftime('%Hh%M') %></p>
+           </div>
+           <div class="message-body">
+             <p><strong><%= ad.title %></strong></p>
+             <p><%= ad.description.html_safe %></p>
+           </div>
+           <div class="message-status">
+             <p class="status pending"> <%= ad.location %></p>
+             <p class="price"><%= ad.price %> €</p>
+           </div>
+         </div>
+       <% end %>
+     </ul>
+   </div>
+ </div>
 </div>
 
 <%= link_to "Back to products list", root_path(anchor: 'products'), class: "btn btn-success" %>
+
+
