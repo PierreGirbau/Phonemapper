@@ -1,19 +1,27 @@
 .message {
   display: flex;
-  align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid rgba(220,224,244,0.4);
+  justify-content: space-between;
+  align-items: top;
+  padding: 10px;
+  border-top: 1px solid rgba(220,224,244,0.4);
   height: 120px;
   text-overflow: ellipsis;
   overflow: hidden;
   background-color: white;
+  position: relative;
 }
-.message:last-child {
-  border-bottom: none;
+.message:first-child {
+  border-top: none;
 }
 .message-body {
   flex-grow: 1;
 }
+
+.message-pic {
+  padding-right: 10px;
+  width: 100px;
+}
+
 .message-name {
   padding-left: 10px;
   min-width: 100px;
@@ -47,6 +55,7 @@
 .message-status {
   font-size: 14px;
   font-weight: bold;
+  width: 100px;
 }
 .status.accepted {
   color: #04A366;
@@ -93,5 +102,9 @@
 
 .msg-link:hover {
   opacity: 0.1;
+}
+
+.msg-space {
+  height: 5px;
 }
 
