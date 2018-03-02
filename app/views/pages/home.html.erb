@@ -6,7 +6,7 @@
   <div class="row" id="products">
       <% @products.each do |product| %>
         <div class="col-xs-12 col-sm-4">
-            <div class="card text-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= product.picture %>);">
+            <div class="card text-center" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url(<%= product.picture %>);">
               <div class="card-description">
                   <%= link_to "#{product.brand.name} #{product.name} #{product.version}", product_path(product) %>
               </div>
