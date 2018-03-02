@@ -84,8 +84,12 @@ class LeboncoinScrappingService
     if Ad.find_by(url: ad.url).nil?
       puts "+++ Creating new ad +++"
       ad.save!
-      img_div_array.uniq!.each do |pic_url|
+      puts img_div_array
+      img_div_array.uniq!
+      if !img_div_array.nil?
+        img_div_array.each do |pic_url|
         Picture.create!(url: pic_url, ad: ad)
+       end
       end
     else
       puts "--- Ad already exists ---"
