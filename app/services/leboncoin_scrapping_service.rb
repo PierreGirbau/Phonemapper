@@ -1,10 +1,6 @@
 require 'open-uri'
 require 'nokogiri'
 
-# File.open("lbccontent", 'wb') do |file|
-#   file.write(open(url).read)
-# end
-
 class LeboncoinScrappingService
   def initialize(attributes = {})
     @name = attributes[:name]
@@ -20,7 +16,7 @@ class LeboncoinScrappingService
     loop do
       url = "https://www.leboncoin.fr/annonces/offres/?o=#{i}&q=#{@name.downcase}%20#{@version}&location=#{@location}"
       html_doc = Nokogiri::HTML(open(url).read)
-      break if !html_doc.xpath('//article[contains(@class, "noResult")]').text.empty? || i > 3
+      break if !html_doc.xpath('//article[contains(@class, "noResult")]').text.empty? || i > 2
       puts "============================ PAGE #{i} ============================="
       ads_list_crawler(html_doc)
       i += 1
@@ -28,63 +24,50 @@ class LeboncoinScrappingService
   end
 
   def ads_list_crawler(html_doc)
-    # Identify each iPhone with the h2 tag
     html_doc.search('.tabsContent a').each do |element|
-      ad_title = element.attribute('title').value
-      if ad_title.downcase.start_with?('iphone') || ad_title.downcase.start_with?('vend iphone') ||ad_title.downcase.start_with?('vends iphone')
-
-        # Save product_page url
-        ad_url = "https:#{element.attribute('href').value.split('?')[0]}"
-
-        # Retrieve city from product_card
-        meta_result = element.search('meta').first
-        if meta_result['itemprop'] == 'address'
-          ad_location = meta_result['content'].split('/')[0]
-        end
-
-        # Retrieve price from product_card
-        ad_price = 0
-        element.search('h3').each do |h3_result|
-          if h3_result['itemprop'] == 'price'
-            ad_price = h3_result['content'].to_i
-          end
-        end
-
-        img_div_array = []
-        ad = ad_page_scrapper(ad_title, ad_url, ad_location, ad_price, img_div_array)
-
-        compare_ad_to_database(ad, img_div_array)
-      end
+      puts "======================================="
+      ad_url = "https:#{element.attribute('href').value.split('?')[0]}"
+      img_div_array = []
+      ad_page_scrapper(ad_url, img_div_array)
     end
   end
 
-  def ad_page_scrapper(ad_title, ad_url, ad_location, ad_price, img_div_array)
-    # Open product_page
-    product_doc = Nokogiri::HTML(open(ad_url).read)
+  def ad_page_scrapper(ad_url, img_div_array)
+    # Open ad_page
+    ad_doc = Nokogiri::HTML(open(ad_url).read)
 
-    # Retrieve date from product_page
-    ad_datetime =  DateTime.strptime(product_doc.xpath('//div[@data-qa-id="adview_date"]').text, '%e/%m/%Y à %Hh%M')
+    # Retrieve title from ad_page
+    ad_title = ad_doc.xpath('//div[@data-qa-id="adview_title"]/h1').text
+    return if !ad_title.downcase.start_with?('iphone') #|| !ad_title.downcase.start_with?('vend iphone') || !ad_title.downcase.start_with?('vends iphone')
 
-    # Retrieve description (as html string) from product_page
-    ad_description = product_doc.xpath('//div[@data-qa-id="adview_description_container"]').css('span').first.inner_html
+    # Retrieve ad_price from ad_page
+    ad_price = ad_doc.xpath('//div[@data-qa-id="adview_price"]').text.split('€').first.to_i
 
-    # Retrieve images url from product_page
-    product_doc.xpath('//div[starts-with(@style, "background-image:url")]').each do |res|
+    # Retrieve location from ad_page
+    ad_location = ad_doc.xpath('//div[@data-qa-id="adview_location_informations"]').text.gsub('Voir sur la carte', '')
+
+    # Retrieve date from ad_page
+    ad_datetime = DateTime.strptime(ad_doc.xpath('//div[@data-qa-id="adview_date"]').text, '%e/%m/%Y à %Hh%M')
+
+    # Retrieve description (as html string) from ad_page
+    ad_description = ad_doc.xpath('//div[@data-qa-id="adview_description_container"]').css('span').first.inner_html
+
+    # Retrieve images url from ad_page
+    ad_doc.xpath('//div[starts-with(@style, "background-image:url")]').each do |res|
       img_div_array << res.attribute('style').value.gsub('background-image:url(', '').gsub(');', '')
     end
 
-    # Find product and return new ad
+    # Find corresponding product and return new ad
     product = Product.find_by(version: @version, capacity: 0, color: 'unknown', brand: @brand)
-    return Ad.new(title: ad_title, description: ad_description, url: ad_url, date: ad_datetime, location: ad_location, price: ad_price, source: "leboncoin", product: product)
+    ad = Ad.new(title: ad_title, description: ad_description, url: ad_url, date: ad_datetime, location: ad_location, price: ad_price, source: "leboncoin", product: product)
+    compare_ad_to_database(ad, img_div_array)
   end
 
   def compare_ad_to_database(ad, img_div_array)
-    puts "======================================="
     puts ad.url
     if Ad.find_by(url: ad.url).nil?
       puts "+++ Creating new ad +++"
-      ad.save!
-      puts img_div_array
+      ad.save
       img_div_array.uniq!
       if !img_div_array.nil?
         img_div_array.each do |pic_url|
