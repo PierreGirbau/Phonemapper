@@ -1,6 +1,8 @@
 <div class="navbar-phone">
   <!-- Logo -->
-  <%= link_to image_tag("smartphone-green.svg", height: 60, width: 60), root_path, class:"navbar-phone-logo" %>
+  <%= link_to root_path, class:"navbar-phone-logo" do %>
+    <%= image_tag("smartphone-green.svg", height: 60, width: 60) %>
+  <% end %>
   <!-- Search form -->
   <%= render 'shared/navbarsearch' %>
 </div>
