@@ -5,7 +5,9 @@
       <ul>
         <% @ads.each do |ad| %>
           <div class="message" id="ad#{<% ad.id %>}">
+            <div class="message-pic">
            <%= image_tag Picture.find_by(ad: ad).url, class: "avatar-large" %>
+           </div>
            <div class="message-name">
              <h3><%= ad.date.strftime('%d/%m/%Y') %></h3>
              <p><%= ad.date.strftime('%Hh%M') %></p>
@@ -18,6 +20,8 @@
              <p class="status pending"> <%= ad.location %></p>
              <p class="price"><%= ad.price %> €</p>
            </div>
+         </div>
+         <div class="msg-space">
          </div>
        <% end %>
      </ul>
