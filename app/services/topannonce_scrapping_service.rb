@@ -41,6 +41,5 @@ class TopannonceScrapping
       end
     return ads_array
   end
-
 end
 
