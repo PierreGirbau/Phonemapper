@@ -115,4 +115,4 @@ class ParuvenduScrappingService
 #   end
 end
 
-ParuvenduScrappingService.new(name: 'iPhone', version: "3GS", location: 'Paris', brand: "Apple").page_iterator
+# ParuvenduScrappingService.new(name: 'iPhone', version: "3GS", location: 'Paris', brand: "Apple").page_iterator
