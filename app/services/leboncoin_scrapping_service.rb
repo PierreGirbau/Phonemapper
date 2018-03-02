@@ -13,22 +13,21 @@ class LeboncoinScrappingService
     @brand = attributes[:brand]
   end
 
-  def lbc_iterate_over_result_pages
+  def results_page_iterator
     sleep(rand(0.0..3.0))
     i = 1
     # Iterate over each page result while not empty
     loop do
       url = "https://www.leboncoin.fr/annonces/offres/?o=#{i}&q=#{@name.downcase}%20#{@version}&location=#{@location}"
-      html_file = open(url).read
-      html_doc = Nokogiri::HTML(html_file)
+      html_doc = Nokogiri::HTML(open(url).read)
       break if !html_doc.xpath('//article[contains(@class, "noResult")]').text.empty? || i > 3
       puts "============================ PAGE #{i} ============================="
-      lbc_result_page_scrapper(html_doc)
+      ads_list_crawler(html_doc)
       i += 1
     end
   end
 
-  def lbc_result_page_scrapper(html_doc)
+  def ads_list_crawler(html_doc)
     # Identify each iPhone with the h2 tag
     html_doc.search('.tabsContent a').each do |element|
       ad_title = element.attribute('title').value
@@ -52,17 +51,16 @@ class LeboncoinScrappingService
         end
 
         img_div_array = []
-        ad = lbc_product_page_scrapper(ad_title, ad_url, ad_location, ad_price, img_div_array)
+        ad = ad_page_scrapper(ad_title, ad_url, ad_location, ad_price, img_div_array)
 
         compare_ad_to_database(ad, img_div_array)
       end
     end
   end
 
-  def lbc_product_page_scrapper(ad_title, ad_url, ad_location, ad_price, img_div_array)
+  def ad_page_scrapper(ad_title, ad_url, ad_location, ad_price, img_div_array)
     # Open product_page
-    product_file = open(ad_url).read
-    product_doc = Nokogiri::HTML(product_file)
+    product_doc = Nokogiri::HTML(open(ad_url).read)
 
     # Retrieve date from product_page
     ad_datetime =  DateTime.strptime(product_doc.xpath('//div[@data-qa-id="adview_date"]').text, '%e/%m/%Y à %Hh%M')
@@ -86,9 +84,12 @@ class LeboncoinScrappingService
     if Ad.find_by(url: ad.url).nil?
       puts "+++ Creating new ad +++"
       ad.save!
+      puts img_div_array
       img_div_array.uniq!
-      img_div_array.each do |pic_url|
+      if !img_div_array.nil?
+        img_div_array.each do |pic_url|
         Picture.create!(url: pic_url, ad: ad)
+       end
       end
     else
       puts "--- Ad already exists ---"
