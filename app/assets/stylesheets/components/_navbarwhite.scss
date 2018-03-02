@@ -7,7 +7,6 @@
   top: 0;
   display: flex;
   align-items: center;
-  justify-content: space-between;
   background: -webkit-linear-gradient(left, #11998E, #38EF7D);
   transition: 0.2s background-color ease;
   .navbar-content {
@@ -25,7 +24,6 @@
   background: white !important;
   color: $green;
   .navbar-content {
-    position: absolute;
     padding-left: 70px;
     display: flex;
     align-items: center;
