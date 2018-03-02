@@ -73,7 +73,7 @@ html_doc.search('h2').each do |element|
       end
     end
     Product.create!(brand: apple, name: "iPhone", version: version, capacity: 0, color: "unknown", price: 1000, picture: image_link_hash[version.downcase])
-    LeboncoinScrappingService.new(name: 'iPhone', version: version, location: 'Paris', brand: apple).results_page_iterator
+    # LeboncoinScrappingService.new(name: 'iPhone', version: version, location: 'Paris', brand: apple).results_page_iterator
   end
 end
 
