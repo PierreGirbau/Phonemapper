@@ -10,6 +10,7 @@ gem 'rails', '5.1.5'
 gem 'redis'
 gem 'pg_search'
 gem 'kaminari'
+gem 'seed_dump'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
