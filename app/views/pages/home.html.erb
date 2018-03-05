@@ -16,7 +16,7 @@
         <%= link_to "", product_path(product), class:'message-ad-url'%>
       </div>
     <% end %>
-    <%= paginate @products %>
+    <%= paginate @products, remote: true%>
   </div> <!-- row -->
 </div>
 <!-- search, Display Results -->
