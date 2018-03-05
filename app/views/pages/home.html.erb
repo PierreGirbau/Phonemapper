@@ -5,15 +5,16 @@
   <h1> <a href=""><i class="fa fa-thumbs-up"></i></a> Our best deals</h1>
   <div class="row">
     <% @products.each do |product| %>
+    <%= link_to product_path(product) do %>
       <div class="col-xs-12 col-sm-4">
-        <div class="card text-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= product.picture %>);">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= product.picture %>);">
           <div class="card-description">
             <%= product.brand.name %>
             <%= product.name %>
             <%= product.version %>
           </div>
         </div>
-        <%= link_to "", product_path(product), class:'message-ad-url'%>
+        <% end %>
       </div>
     <% end %>
     <%= paginate @products, remote: true%>
