@@ -1,17 +1,28 @@
-<div class="container">
-  <h1>Our best deals</h1>
-    <div class="row">
-      <% @ads.each do |ad| %>
-      <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url();">
-          <div class="card-category">Best deal</div>
-          <div class="card-description">
-            <h2><%= link_to "#{ad.title}", ad_path(ad) %></h2>
-            <h2><%= "#{ad.price}€" %></h2>
-          </div>
-          <a class="card-link" href="#" ></a>
-        </div>
+<div class="main-container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-6 col-md-6">
+      <div class="filter-container">
       </div>
-    <% end %>
+    </div>
+    <div class="container" id="ads">
+      <h1> <a href=""><i class="fa fa-star"></i></a> Best results for you</h1>
+        <div class="row">
+          <% @ads.each do |ad| %>
+          <%= link_to ad_path(ad) do %>
+          <div class="col-xs-12 col-sm-4">
+            <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url();">
+              <div class="card-description">
+                <%= ad.title %>
+                <%= ad.price  %>
+              </div>
+            </div>
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+    </div>
   </div>
 </div>
+
+
+
