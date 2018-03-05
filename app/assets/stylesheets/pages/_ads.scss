@@ -11,3 +11,24 @@
 #ads i {
   color: $green;
 }
+#ads.card {
+  padding: 5px;
+}
+.main-container {
+  display: flex;
+}
+.filter-container {
+  background-color: white;
+  height: calc(100vh - 65px);
+  width: 250px;
+  position: sticky;
+  border-radius: 4px;
+  top: 80px;
+  bottom: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  p, h3 {
+    margin: 5px 5px;
+    color: $green;
+  }
+}
