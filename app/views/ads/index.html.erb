@@ -1,17 +1,26 @@
-<div class="container">
-  <h1>Our best deals</h1>
+<div class="main-container">
+  <div class="filter-container">
+    <h3>Your search</h3>
+    <p> X products found </p>
+  </div>
+  <div id="ads">
+    <h1> <a href=""><i class="fa fa-star"></i></a> Best results for you</h1>
     <div class="row">
       <% @ads.each do |ad| %>
+      <%= link_to ad_path(ad) do %>
       <div class="col-xs-12 col-sm-4">
         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url();">
-          <div class="card-category">Best deal</div>
           <div class="card-description">
-            <h2><%= link_to "#{ad.title}", ad_path(ad) %></h2>
-            <h2><%= "#{ad.price}€" %></h2>
+            <%= ad.title %>
+            <%= ad.price %>
           </div>
-          <a class="card-link" href="#" ></a>
         </div>
+      <% end %>
       </div>
-    <% end %>
+      <% end %>
+    </div>
   </div>
 </div>
+
+
+
