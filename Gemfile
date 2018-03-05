@@ -11,6 +11,7 @@ gem 'redis'
 gem 'pg_search'
 gem 'kaminari'
 gem 'seed_dump'
+gem 'geocoder'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
