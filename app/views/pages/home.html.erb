@@ -1,9 +1,9 @@
 <!-- Search bar -->
 <%= render 'shared/banner' %>
 <!-- No search, Display Best deals -->
-<div class="container">
-  <h1>Our best deals</h1>
-  <div class="row" id="products">
+<div class="container" id="products">
+  <h1> <a href=""><i class="fa fa-thumbs-up"></i></a> Our best deals</h1>
+  <div class="row">
       <% @products.each do |product| %>
         <div class="col-xs-12 col-sm-4">
           <div class="card text-center" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= product.picture %>);">
