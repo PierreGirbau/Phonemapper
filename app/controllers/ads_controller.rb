@@ -2,7 +2,11 @@ class AdsController < ApplicationController
   before_action :set_ad, only: [:show]
 
   def index
-    @ads = Ad.all.limit(50).order('price asc')
+    if params[:query].present?
+      @ads = Ad.search_by_title(params[:query])
+    else
+      @ads = Ad.all.limit(50).order('price asc')
+    end
   end
 
   def show
