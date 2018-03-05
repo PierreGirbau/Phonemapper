@@ -2,9 +2,12 @@
   margin-top: 75px;
   color: $green;
   background-color: white;
-  width: 440px;
+  width: 420px;
   border-radius: 4px;
-  padding: 8px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 8px;
+  padding-right: 5px;
 }
 
 #products i {
@@ -20,9 +23,6 @@
   position: relative;
   margin-bottom: 15px;
   border-radius: 4px;
-}
-.card:hover {
-  opacity: 0.4;
 }
 .card-category {
   position: absolute;
