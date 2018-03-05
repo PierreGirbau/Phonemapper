@@ -11,18 +11,17 @@
 #ads i {
   color: $green;
 }
-#ads.card {
-  padding: 5px;
-}
 .main-container {
   display: flex;
+  padding: 5px;
 }
 .filter-container {
   background-color: white;
   height: calc(100vh - 65px);
-  width: 250px;
+  width: 400px;
   position: sticky;
   border-radius: 4px;
+  margin: 5px;
   top: 80px;
   bottom: 50px;
   margin-left: 10px;
