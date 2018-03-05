@@ -9,11 +9,9 @@
   padding-left: 8px;
   padding-right: 5px;
 }
-
 #products i {
   color: $green;
 }
-
 .card {
   height: 175px;
   text-shadow: 0 1px 3px rgba(0,0,0,0.6);
@@ -23,6 +21,10 @@
   position: relative;
   margin-bottom: 15px;
   border-radius: 4px;
+  opacity: 1;
+}
+.card:hover {
+  opacity: 0.4;
 }
 .card-category {
   position: absolute;
@@ -43,14 +45,4 @@
   font-size: 14px;
   opacity: 0.7;
   font-weight: lighter;
-}
-.card-link {
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  width: 100%;
-  z-index: 2;
-  text-decoration: none;
-  opacity: 0;
 }
