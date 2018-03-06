@@ -27,7 +27,7 @@
           <div class="row">
             <div class="col-xs-12 col-sm-6">
               <% Picture.where(ad: ad).each do |pic| %>
-                <%= image_tag pic.url, width: 200 %>
+              <%= image_tag pic.url, width: 200 %>
               <% end %>
             </div>
           </div>
@@ -41,3 +41,4 @@
     </div>
   </div>
 </div>
+
