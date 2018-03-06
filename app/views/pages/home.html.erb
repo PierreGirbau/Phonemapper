@@ -1,23 +1,25 @@
 <!-- Search bar -->
 <%= render 'shared/banner' %>
 <!-- No search, Display Best deals -->
-<div class="container" id="products">
-  <h1> <a href=""><i class="fa fa-thumbs-up"></i></a> Our best deals</h1>
+<div class="container" id="ads">
+  <h1> <a href=""><i class="fa fa-thumbs-up"></i></a>The best deals around you</h1>
   <div class="row">
-    <% @products.each do |product| %>
-    <%= link_to product_path(product) do %>
+    <% @ads.each do |ad| %>
+    <%= link_to ad_path(ad) do %>
       <div class="col-xs-12 col-sm-4">
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= product.picture %>);">
+        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url(<%= ad.pictures.first.url %>);">
           <div class="card-description">
-            <%= product.brand.name %>
-            <%= product.name %>
-            <%= product.version %>
+            <%= ad.title %>
+            <h3> <%= ad.price %> € </h3>
           </div>
         </div>
         <% end %>
       </div>
     <% end %>
-    <%= paginate @products, remote: true%>
   </div> <!-- row -->
 </div>
 <!-- search, Display Results -->
+
+
+
+
