@@ -1,35 +1,52 @@
-<div class="container">
-  <div class="row">
-    <div class="col-xs-12 col-sm-6">
-      <h1><%= @ad.title %></h1>
-      <h5>Annonce parue le <%= @ad.date.strftime('%d/%m/%Y à %Hh%M') %> sur <%= @ad.source %></h5>
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel"><%= @ad.title %></h4>
+      </div>
+      <div class="modal-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-6">
+              <h1><%= @ad.title %></h1>
+              <h5>Annonce parue le <%= @ad.date.strftime('%d/%m/%Y à %Hh%M') %> sur <%= @ad.source %></h5>
+            </div>
+            <div class="col-xs-12 col-sm-6" id="price-ad-show" style="text-align: center">
+              <h2>Prix: <%= @ad.price %> € </h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <h5><%= @ad.location %></h5>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12">
+              <p><b> Description: </b><p>
+              <p><%= @ad.description.html_safe %></p>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <div class="col-xs-12">
+              <% @pictures.each do |pic| %>
+                <%= image_tag pic.url, width: 200 %>
+              <% end %>
+            </div>
+          </div>
+          <hr>
+          <div class="row">
+            <%= link_to "Back to search results", product_path(@ad.product), class: "btn btn-success" %>
+            <%= link_to "Voir l'annonce sur #{@ad.source}", @ad.url, class: "btn btn-primary", target: "_blank" %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
     </div>
-    <div class="col-xs-12 col-sm-6" id="price-ad-show" style="text-align: center">
-      <h2>Prix: <%= @ad.price %> € </h2>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <h5><%= @ad.location %></h5>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12">
-      <p><b> Description: </b><p>
-      <p><%= @ad.description.html_safe %></p>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <div class="col-xs-12">
-      <% @pictures.each do |pic| %>
-        <%= image_tag pic.url, width: 200 %>
-      <% end %>
-    </div>
-  </div>
-  <hr>
-  <div class="row">
-    <%= link_to "Back to search results", product_path(@ad.product), class: "btn btn-success" %>
-    <%= link_to "Voir l'annonce sur #{@ad.source}", @ad.url, class: "btn btn-primary", target: "_blank" %>
   </div>
 </div>

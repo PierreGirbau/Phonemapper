@@ -10,15 +10,67 @@
     <h1>Best results for you</h1>
     <div class="clearfix">
       <% @ads.each do |ad| %>
-      <%= link_to ad_path(ad) do %>
       <div class="col-xs-12 col-sm-6">
+        <%= link_to "#", "data-toggle" => "modal", "data-target" => "#myModal#{ad.id}" do %>
         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.2)), url();">
           <div class="card-description">
             <%= ad.title %>
             <h3><%= ad.price %>€</h3>
+            <!-- Button trigger modal -->
+            <!-- <button type="button" class="btn btn-primary btn-lg btntest" data-toggle="modal" data-target="#myModal<%= ad.id %>">Open</button> -->
           </div>
         </div>
-      <% end %>
+        <% end %>
+      </div>
+      <!-- Modal -->
+      <div class="modal fade" id="myModal<%= ad.id %>" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+              <h1 class="modal-title" id="myModalLabel"><%= ad.title %></h1>
+            </div>
+            <div class="modal-body">
+
+              <div class="container">
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6" id="price-ad-show">
+                    <h2>Prix: <%= ad.price %> € </h2>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6">
+                    <h5>Annonce parue le <%= ad.date.strftime('%d/%m/%Y à %Hh%M') %> sur <%= ad.source %></h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6">
+                    <h5><%= ad.location %></h5>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6">
+                    <p><b> Description: </b><p>
+                    <p><%= ad.description.html_safe %></p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-xs-12 col-sm-6">
+                    <% Picture.where(ad: ad).each do |pic| %>
+                      <%= image_tag pic.url, width: 200 %>
+                    <% end %>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <%= link_to "Voir l'annonce sur #{ad.source}", ad.url, class: "btn btn-primary", target: "_blank" %>
+            </div>
+          </div>
+        </div>
       </div>
       <% end %>
     </div>
