@@ -79,7 +79,6 @@ html_doc.search('h2').each do |element|
 end
 
 
-=begin
 puts 'Creating 208 Ads...'
 
 Ad.create!([
