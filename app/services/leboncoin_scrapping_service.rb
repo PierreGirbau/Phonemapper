@@ -34,20 +34,21 @@ class LeboncoinScrappingService
 
   def ad_page_scrapper(ad_url, img_div_array)
     # Open ad_page
+    ad_url = "https://www.leboncoin.fr/telephonie/1394782404.htm"
     ad_doc = Nokogiri::HTML(open(ad_url).read)
 
     # Retrieve title from ad_page
-    ad_title = ad_doc.xpath('//div[@data-qa-id="adview_title"]/h1').text
+    ad_title = ad_doc.search("h1.no-border").children.first.content.gsub("\n",'').gsub("\t",'')
     return if !ad_title.downcase.start_with?('iphone') #|| !ad_title.downcase.start_with?('vend iphone') || !ad_title.downcase.start_with?('vends iphone')
 
     # Retrieve ad_price from ad_page
-    ad_price = ad_doc.xpath('//div[@data-qa-id="adview_price"]').text.split('€').first.to_i
+    ad_price = ad_doc.search("h2.item_price").attribute("content").value.to_i
 
     # Retrieve location from ad_page
-    ad_location = ad_doc.xpath('//div[@data-qa-id="adview_location_informations"]').text.gsub('Voir sur la carte', '')
-
+    ad_location = ad_doc.xpath("//span[@itemprop = 'address']").children.first.text.gsub("\n", '').rstrip
+    puts ad_location
     # Retrieve date from ad_page
-    ad_datetime = DateTime.strptime(ad_doc.xpath('//div[@data-qa-id="adview_date"]').text, '%e/%m/%Y à %Hh%M')
+    ad_datetime = DateTime.strptime(ad_doc.xpath("//p[@itemprop = 'availabilityStarts']").attribute('content').value, '%Y-%m-%d')
 
     # Retrieve description (as html string) from ad_page
     ad_description = ad_doc.xpath('//div[@data-qa-id="adview_description_container"]').css('span').first.inner_html
@@ -79,3 +80,6 @@ class LeboncoinScrappingService
     end
   end
 end
+
+img_div_array=[]
+puts LeboncoinScrappingService.new(name: 'iPhone', version: "8", location: 'Paris', brand: "Apple").ad_page_scrapper("https://www.leboncoin.fr/telephonie/1394782404.htm", img_div_array)
