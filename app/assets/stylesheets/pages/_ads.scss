@@ -1,3 +1,16 @@
+.modal h1 {
+  font-size: 30px;
+}
+.modal h2 {
+  font-size: 28px;
+}
+.modal h1, h2 {
+  color: $green;
+}
+.modal p {
+  color: $gray;
+  font-size: 14px;
+}
 .main-container {
   display: flex;
 }
