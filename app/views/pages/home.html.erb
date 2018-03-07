@@ -7,16 +7,18 @@
     <% @ads.each do |ad| %>
     <%= link_to ad_path(ad) do %>
     <div class="col-xs-12 col-sm-4 col-md-3">
-      <%  ad.pictures.first.nil? ? url = "https://images.unsplash.com/photo-1510878933023-e2e2e3942fb0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d8703554e1184ec9edb2713e254ec6c2&auto=format&fit=crop&w=1351&q=80" : url = ad.pictures.first.url  %>
+      <%  ad.pictures.first.nil? ? url = ad.product.picture : url = ad.pictures.first.url  %>
       <%= link_to "#", "data-toggle" => "modal", "data-target" => "#myModal#{ad.id}" do %>
       <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url(<%= url %>);">
+        <p style="padding: 5px"><%= ad.title %></p>
         <div class="card-description">
-          <%= ad.title %>
           <h3> <%= ad.price %> € </h3>
+
           <!-- TODO display travel duration hash[ad.id] -->
-          <h5 class="card-text text-right"> <%= @travel_time[ad.id] %>
-            <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 48 48"> <g class="nc-icon-wrapper" fill="#ffffff"> <path d="M37.84 12.02C37.43 10.84 36.31 10 35 10H13c-1.31 0-2.43.84-2.84 2.02L6 24v16c0 1.1.9 2 2 2h2c1.11 0 2-.9 2-2v-2h24v2c0 1.1.9 2 2 2h2c1.11 0 2-.9 2-2V24l-4.16-11.98zM13 32c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm22 0c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zM10 22l3-9h22l3 9H10z"></path> </g> </svg>
+            <%= @travel_time[ad.id] %>
+            <h5 class="card-text text-right">
             </h5>
+            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" viewBox="0 0 48 48"> <g class="nc-icon-wrapper" fill="#ffffff"> <path d="M37.84 12.02C37.43 10.84 36.31 10 35 10H13c-1.31 0-2.43.84-2.84 2.02L6 24v16c0 1.1.9 2 2 2h2c1.11 0 2-.9 2-2v-2h24v2c0 1.1.9 2 2 2h2c1.11 0 2-.9 2-2V24l-4.16-11.98zM13 32c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm22 0c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zM10 22l3-9h22l3 9H10z"></path> </g> </svg>
         </div>
       </div>
       <% end %>
