@@ -3,12 +3,19 @@
 <head>
   <title>We're sorry, but something went wrong (500)</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+    <!-- FiveIcon -->
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="/favicon.ico" type="image/x-icon">
+
   <style>
   .rails-default-error-page {
-    background-color: #EFEFEF;
-    color: #2E2F30;
+    background: -webkit-linear-gradient(left, #11998E, #38EF7D);
+    color: #11998e;
     text-align: center;
-    font-family: arial, sans-serif;
+    font-family: 'Roboto', sans-serif;
     margin: 0;
   }
 
@@ -19,21 +26,20 @@
   }
 
   .rails-default-error-page div.dialog > div {
-    border: 1px solid #CCC;
-    border-right-color: #999;
-    border-left-color: #999;
-    border-bottom-color: #BBB;
-    border-top: #B00100 solid 4px;
-    border-top-left-radius: 9px;
-    border-top-right-radius: 9px;
+    border: 1px solid transparent;
+    border-right-color: transparent;
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+    /*border-top: #11998e solid 4px;*/
+    border-radius: 9px;
     background-color: white;
-    padding: 7px 12% 0;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+    padding: 25px 12% 25px;
+    /*box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);*/
   }
 
   .rails-default-error-page h1 {
-    font-size: 100%;
-    color: #730E15;
+    font-size: 30px;
+    color: #11998e;
     line-height: 1.5em;
   }
 
@@ -45,22 +51,29 @@
     border-right-color: #999;
     border-left-color: #999;
     border-bottom-color: #999;
-    border-bottom-left-radius: 4px;
-    border-bottom-right-radius: 4px;
+    border-radius: 4px;
     border-top-color: #DADADA;
     color: #666;
-    box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);
+    /*box-shadow: 0 3px 8px rgba(50, 50, 50, 0.17);*/
   }
   </style>
 </head>
 
 <body class="rails-default-error-page">
-  <!-- This file lives in public/500.html -->
+  <!-- This file lives in public/404.html -->
   <div class="dialog">
     <div>
       <h1>We're sorry, but something went wrong.</h1>
+      <img src="https://res.cloudinary.com/dwa3usnol/image/upload/v1520419745/Logo_OG_page.png" alt="Phone Mapper" style="width:105px;height:160px;margin:15px; ">
+      <div>
+      <img src="http://res.cloudinary.com/dwa3usnol/image/upload/v1520421711/error_404.png" alt="Phone Mapper" style="width:150px;height:150px;;margin:15px;">
+      </div>
+
+
+      <div><a href="/" class="btn btn-success">Back to Phone Mapper</a></div>
+
     </div>
-    <p>If you are the application owner check the logs for more information.</p>
   </div>
 </body>
 </html>
+

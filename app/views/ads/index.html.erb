@@ -15,10 +15,12 @@
 
   </div>
   <div id="ads">
-    <h1><%= @ads.count %> products found</h1>
+    <h1><%= @ads.size %> results found</h1>
+
     <div class="clearfix">
       <% @ads.each do |ad| %>
       <div class="col-xs-12 col-sm-6">
+        <!-- Button trigger modal -->
         <%= link_to "#", "data-toggle" => "modal", "data-target" => "#myModal#{ad.id}" do %>
         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url(<%= Picture.where(ad: ad).first.url %>);">
           <div class="card-description">

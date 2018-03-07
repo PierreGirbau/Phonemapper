@@ -12,6 +12,7 @@ gem 'pg_search'
 gem 'kaminari'
 gem 'seed_dump'
 gem 'geocoder'
+gem 'google_maps_service'
 
 gem 'autoprefixer-rails'
 gem 'bootstrap-sass'
