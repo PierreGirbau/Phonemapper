@@ -2,12 +2,11 @@
   <div class="filter-container">
     <h3>Your search</h3>
     <hr>
-    <p><%= @ads.count %> products found</p>
     <p>Price</p>
     <p>Capacity</p>
   </div>
   <div id="ads">
-    <h1>Best results for you</h1>
+    <h1><%= @ads.count %> products found</h1>
     <div class="clearfix">
       <% @ads.each do |ad| %>
       <div class="col-xs-12 col-sm-6">
