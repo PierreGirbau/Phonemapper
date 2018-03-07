@@ -3,7 +3,8 @@ class AdsController < ApplicationController
 
   def index
     if params[:query].present?
-      @ads = Ad.search_by_title(params[:query]).order('price asc').page params[:page]
+      geocoded_results = Ad.near([@geolocation.first.latitude, @geolocation.first.longitude], 20).limit(12)
+      @ads = geocoded_results.search_by_title(params[:query]).order('price asc').page(params[:page])
     else
       @ads = Ad.all.limit(50).order('price asc').page params[:page]
     end
