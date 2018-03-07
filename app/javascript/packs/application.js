@@ -1,8 +1,7 @@
 import 'bootstrap';
-import '../components/rangeslider';
+// import '../components/slider';
 
 import { initUpdateNavbarOnScroll } from '../components/navbar';
-// import { slider } from '../components/slider';
 
 initUpdateNavbarOnScroll();
 testModal();
