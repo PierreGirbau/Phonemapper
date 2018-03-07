@@ -46,7 +46,7 @@ class LeboncoinScrappingService
 
     # Retrieve location from ad_page
     ad_location = ad_doc.xpath("//span[@itemprop = 'address']").children.first.text.gsub("\n", '').rstrip
-
+    puts ad_location
     # Retrieve date from ad_page
     ad_datetime = DateTime.strptime(ad_doc.xpath("//p[@itemprop = 'availabilityStarts']").attribute('content').value, '%Y-%m-%d')
 
