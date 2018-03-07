@@ -29,7 +29,12 @@ class LeboncoinScrappingService
       puts "======================================="
       ad_url = "https:#{element.attribute('href').value.split('?')[0]}"
       puts ad_url
-      ad_page_scrapper(ad_url)
+      ad_title = element.attribute('title').value
+      if ad_title.downcase.start_with?('iphone')
+        ad_page_scrapper(ad_url)
+      else
+        puts "#{ad_title} => NOT AN IPHONE"
+      end
     end
   end
 
@@ -39,8 +44,9 @@ class LeboncoinScrappingService
 
     # Retrieve title from ad_page
     ad_title = ad_doc.search("h1.no-border").children.first.content.gsub("\n",'').gsub("\t",'').rstrip
-    return if !ad_title.downcase.start_with?('iphone') #|| !ad_title.downcase.start_with?('vend iphone') || !ad_title.downcase.start_with?('vends iphone')
     puts ad_title
+    #return if !ad_title.downcase.start_with?('iphone') #|| !ad_title.downcase.start_with?('vend iphone') || !ad_title.downcase.start_with?('vends iphone')
+
     # Retrieve ad_price from ad_page
     ad_price = ad_doc.search("h2.item_price").attribute("content").value.to_i
     puts ad_price
@@ -54,9 +60,9 @@ class LeboncoinScrappingService
     ad_description = ad_doc.xpath('//p[@itemprop="description"]')
     puts ad_description
     if ad_description.nil?
-      ad_descrition = ""
+      ad_description = ""
     else
-      ad_descrition = ad_description.inner_html
+      ad_description = ad_description.inner_html
     end
     puts ad_description
     # Retrieve images url from ad_page
@@ -72,7 +78,6 @@ class LeboncoinScrappingService
     if Ad.find_by(url: ad.url).nil?
       puts "+++ Creating new ad +++"
       ad.save
-      img_div_array.uniq!
       if !img_div_array.nil?
         img_div_array.each do |pic_url|
         Picture.create!(url: pic_url, ad: ad)
