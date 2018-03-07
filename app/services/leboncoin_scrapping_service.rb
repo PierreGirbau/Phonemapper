@@ -81,5 +81,5 @@ class LeboncoinScrappingService
   end
 end
 
-img_div_array=[]
-puts LeboncoinScrappingService.new(name: 'iPhone', version: "8", location: 'Paris', brand: "Apple").ad_page_scrapper("https://www.leboncoin.fr/telephonie/1394782404.htm", img_div_array)
+# img_div_array=[]
+# puts LeboncoinScrappingService.new(name: 'iPhone', version: "8", location: 'Paris', brand: "Apple").ad_page_scrapper("https://www.leboncoin.fr/telephonie/1394782404.htm", img_div_array)
