@@ -4,7 +4,7 @@ class PagesController < ApplicationController
   def home
     if @geolocation.first.latitude && @geolocation.first.longitude
       @ads = Ad.near([@geolocation.first.latitude, @geolocation.first.longitude], 20).limit(12)
-      gmaps = GoogleMapsService::Client.new(key: ENV['GOOGLE_API_SERVER_KEY'])
+      gmaps = GoogleMapsService::Client.new(key: ENV['GOOGLE_MAPS_API_SERVER_KEY'])
       user_location = [@geolocation.first.latitude, @geolocation.first.longitude]
       @travel_time = {}
 
