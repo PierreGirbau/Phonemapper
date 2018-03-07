@@ -15,10 +15,14 @@ class LeboncoinScrappingService
     loop do
       url = "https://www.leboncoin.fr/annonces/offres/?o=#{i}&q=#{@name.downcase}%20#{@version}&location=#{@location}"
       puts url
-      html_doc = Nokogiri::HTML(open(url).read)
-      break if !html_doc.xpath('//article[contains(@class, "noResult")]').text.empty? || i > 2
-      puts "============================ PAGE #{i} ============================="
-      ads_list_crawler(html_doc)
+      begin
+        html_doc = Nokogiri::HTML(open(url).read)
+        break if !html_doc.xpath('//article[contains(@class, "noResult")]').text.empty? || i > 2
+        puts "============================ PAGE #{i} ============================="
+        ads_list_crawler(html_doc)
+      rescue => e
+        puts e
+      end
       i += 1
     end
   end
@@ -30,7 +34,11 @@ class LeboncoinScrappingService
       puts ad_url
       ad_title = element.attribute('title').value
       if ad_title.downcase.start_with?('iphone')
-        ad_page_scrapper(ad_url)
+        begin
+          ad_page_scrapper(ad_url)
+        rescue => e
+          puts e
+        end
       else
         puts "#{ad_title} => NOT AN IPHONE"
       end
@@ -89,4 +97,4 @@ class LeboncoinScrappingService
   end
 end
 
-#LeboncoinScrappingService.new(name: 'iPhone', version: "8", location: 'Paris', brand: "Apple").results_page_iterator
+#LeboncoinScrappingService.new(name: 'iPhone', version: "8", location: 'Paris', brand: Brand.find_by(name: "Apple")).results_page_iterator
