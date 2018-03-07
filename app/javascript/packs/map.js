@@ -16,40 +16,103 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
   const styles = [
     {
         "featureType": "administrative",
-        "elementType": "labels.text.fill",
+        "elementType": "all",
         "stylers": [
             {
-                "color": "#000000"
+                "saturation": "-100"
             },
             {
-                "weight": "1.81"
+                "visibility": "off"
             },
             {
-                "gamma": "1.92"
+                "lightness": "9"
             },
             {
-                "saturation": "-3"
+                "gamma": "0.96"
+            },
+            {
+                "weight": "0.01"
             }
         ]
     },
     {
-        "featureType": "administrative",
+        "featureType": "administrative.province",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.province",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.province",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.province",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.province",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.province",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.province",
+        "elementType": "labels.text.fill",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.province",
         "elementType": "labels.text.stroke",
         "stylers": [
             {
-                "saturation": "-46"
-            },
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative.province",
+        "elementType": "labels.icon",
+        "stylers": [
             {
-                "lightness": "-33"
-            },
-            {
-                "weight": "3.47"
-            },
-            {
-                "gamma": "1.72"
-            },
-            {
-                "color": "#ffffff"
+                "visibility": "off"
             }
         ]
     },
@@ -58,7 +121,40 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
         "elementType": "all",
         "stylers": [
             {
-                "color": "#fafafa"
+                "saturation": -100
+            },
+            {
+                "lightness": 65
+            },
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "landscape.man_made",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
             }
         ]
     },
@@ -67,73 +163,79 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "all",
-        "stylers": [
-            {
-                "saturation": "-41"
+                "saturation": -100
             },
             {
-                "lightness": "13"
+                "lightness": "50"
             },
-            {
-                "weight": "1.27"
-            },
-            {
-                "gamma": "0.46"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry.fill",
-        "stylers": [
-            {
-                "color": "#11998e"
-            }
-        ]
-    },
-    {
-        "featureType": "road.highway",
-        "elementType": "all",
-        "stylers": [
             {
                 "visibility": "simplified"
             }
         ]
     },
     {
-        "featureType": "road.highway",
-        "elementType": "geometry.fill",
+        "featureType": "road",
+        "elementType": "all",
         "stylers": [
             {
-                "color": "#7aaf31"
+                "saturation": "-100"
             },
             {
-                "weight": "1.46"
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "road",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "all",
+        "stylers": [
+            {
+                "visibility": "on"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "elementType": "labels.text",
+        "stylers": [
+            {
+                "visibility": "off"
             }
         ]
     },
     {
         "featureType": "road.arterial",
-        "elementType": "labels.icon",
+        "elementType": "all",
         "stylers": [
             {
-                "visibility": "off"
-            },
+                "lightness": "30"
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "elementType": "all",
+        "stylers": [
             {
-                "lightness": "59"
-            },
-            {
-                "saturation": "-63"
-            },
-            {
-                "weight": "1.81"
+                "lightness": "40"
             }
         ]
     },
@@ -142,28 +244,34 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
         "elementType": "all",
         "stylers": [
             {
-                "visibility": "off"
+                "saturation": -100
             },
             {
-                "lightness": "56"
-            },
-            {
-                "weight": "1.81"
+                "visibility": "simplified"
             }
         ]
     },
     {
         "featureType": "water",
-        "elementType": "all",
+        "elementType": "geometry",
         "stylers": [
             {
-                "color": "#38ef7d"
+                "color": "#11998e"
             },
             {
-                "visibility": "on"
+                "lightness": 0
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "elementType": "labels",
+        "stylers": [
+            {
+                "lightness": 0
             },
             {
-                "weight": "1.29"
+                "saturation": 0
             }
         ]
     }
