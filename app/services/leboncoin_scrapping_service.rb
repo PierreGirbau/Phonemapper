@@ -34,11 +34,10 @@ class LeboncoinScrappingService
 
   def ad_page_scrapper(ad_url, img_div_array)
     # Open ad_page
-    ad_url = "https://www.leboncoin.fr/telephonie/1394782404.htm"
     ad_doc = Nokogiri::HTML(open(ad_url).read)
 
     # Retrieve title from ad_page
-    ad_title = ad_doc.search("h1.no-border").children.first.content.gsub("\n",'').gsub("\t",'')
+    ad_title = ad_doc.search("h1.no-border").children.first.content.gsub("\n",'').gsub("\t",'').rstrip
     return if !ad_title.downcase.start_with?('iphone') #|| !ad_title.downcase.start_with?('vend iphone') || !ad_title.downcase.start_with?('vends iphone')
 
     # Retrieve ad_price from ad_page
@@ -51,7 +50,12 @@ class LeboncoinScrappingService
     ad_datetime = DateTime.strptime(ad_doc.xpath("//p[@itemprop = 'availabilityStarts']").attribute('content').value, '%Y-%m-%d')
 
     # Retrieve description (as html string) from ad_page
-    ad_description = ad_doc.xpath('//p[@itemprop="description"]').inner_html
+    ad_description = ad_doc.xpath('//p[@itemprop="description"]')
+    if ad_description.nil?
+      ad_descrition = ""
+    else
+      ad_descrition = ad_description.inner_html
+    end
 
     # Retrieve images url from ad_page
     img_div_array = ad_doc.search("script").text.scan(/https:\/\/img\d.leboncoin.fr\/ad-large\/[a-z0-9]*.jpg/)
