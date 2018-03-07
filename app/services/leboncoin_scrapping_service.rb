@@ -10,7 +10,6 @@ class LeboncoinScrappingService
   end
 
   def results_page_iterator
-    #sleep(rand(0.0..3.0))
     i = 1
     # Iterate over each page result while not empty
     loop do
@@ -39,6 +38,7 @@ class LeboncoinScrappingService
   end
 
   def ad_page_scrapper(ad_url)
+    #sleep(rand(0.0..3.0))
     # Open ad_page
     ad_doc = Nokogiri::HTML(open(ad_url).read)
 
