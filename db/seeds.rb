@@ -78,7 +78,7 @@ html_doc.search('h2').each do |element|
   end
 end
 
-
+=begin
 puts 'Creating 208 Ads...'
 
 Ad.create!([
@@ -723,3 +723,4 @@ Picture.create!([
   {url: "https://img0.leboncoin.fr/ad-image/aa85ca49d1ae122ffc0e8a1814d9231985c00e20.jpg", ad_id: 208}
 ])
 
+=end
