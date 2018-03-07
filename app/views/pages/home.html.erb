@@ -2,7 +2,7 @@
 <%= render 'shared/banner' %>
 <!-- No search, Display Best deals -->
 <div class="container" id="ads">
-  <h1><i class="fa fa-thumbs-up"></i>The best deals around you</h1>
+  <h1 id="title"><i class="fa fa-thumbs-up"></i>The best deals around you</h1>
   <div class="row">
     <% @ads.each do |ad| %>
     <%= link_to ad_path(ad) do %>
