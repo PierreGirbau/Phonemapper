@@ -10,7 +10,7 @@ class LeboncoinScrappingService
   end
 
   def results_page_iterator
-    sleep(rand(0.0..3.0))
+    #sleep(rand(0.0..3.0))
     i = 1
     # Iterate over each page result while not empty
     loop do
@@ -89,4 +89,4 @@ class LeboncoinScrappingService
   end
 end
 
-# puts LeboncoinScrappingService.new(name: 'iPhone', version: "8", location: 'Paris', brand: "Apple").ad_page_scrapper("https://www.leboncoin.fr/telephonie/1394782404.htm", img_div_array)
+#LeboncoinScrappingService.new(name: 'iPhone', version: "8", location: 'Paris', brand: "Apple").results_page_iterator
