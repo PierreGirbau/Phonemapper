@@ -51,12 +51,10 @@ class LeboncoinScrappingService
     ad_datetime = DateTime.strptime(ad_doc.xpath("//p[@itemprop = 'availabilityStarts']").attribute('content').value, '%Y-%m-%d')
 
     # Retrieve description (as html string) from ad_page
-    ad_description = ad_doc.xpath('//div[@data-qa-id="adview_description_container"]').css('span').first.inner_html
+    ad_description = ad_doc.xpath('//p[@itemprop="description"]').inner_html
 
     # Retrieve images url from ad_page
-    ad_doc.xpath('//div[starts-with(@style, "background-image:url")]').each do |res|
-      img_div_array << res.attribute('style').value.gsub('background-image:url(', '').gsub(');', '')
-    end
+    img_div_array = ad_doc.search("script").text.scan(/https:\/\/img\d.leboncoin.fr\/ad-large\/[a-z0-9]*.jpg/)
 
     # Find corresponding product and return new ad
     product = Product.find_by(version: @version, capacity: 0, color: 'unknown', brand: @brand)
