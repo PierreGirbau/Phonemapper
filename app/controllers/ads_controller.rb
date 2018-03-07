@@ -3,7 +3,7 @@ class AdsController < ApplicationController
 
   def index
     if params[:query].present?
-      @ads = Ad.search_by_title(params[:query]).page params[:page]
+      @ads = Ad.search_by_title(params[:query]).order('price asc').page params[:page]
     else
       @ads = Ad.all.limit(50).order('price asc').page params[:page]
     end
