@@ -1,0 +1,49 @@
+.sidebar {
+  background-color: white;
+  height: calc(100vh - 65px);
+  width: 400px;
+  position: sticky !important;
+  border-radius: 4px;
+  margin: 5px;
+  top: 80px;
+  bottom: 50px;
+  margin-left: 10px;
+  margin-right: 10px;
+  p, h3 {
+    margin: 5px 5px;
+    color: $green;
+  }
+  .form-control {
+    width: 90%;
+    margin-left: 5px;
+    border-radius: 5px;
+    border-style: none;
+    color: $green;
+    background-color: white;
+  }
+  .form-control:hover {
+    opacity: 0.9;
+    color: $green;
+  }
+}
+h3 {
+  margin-top: 20px;
+}
+.btn {
+  margin-top: 15px;
+  margin-left: 75px;
+}
+.btn-primary {
+  background-color: $green;
+  border-radius: 5px;
+  box-shadow: 7px 9px 31px -13px rgba(0,0,0,0.75);
+  border-style: none;
+  .btn-primary:hover {
+    opacity: 0.9;
+    background-color: $green;
+  }
+}
+input[type="range"] {
+  margin-left: 10px;
+  width: 90%;
+}

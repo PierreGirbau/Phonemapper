@@ -10,12 +10,10 @@ class AdsController < ApplicationController
     if params[:price].present?
       @ads = @ads.where(price: 0..params[:price].to_i)
     end
-    # if params[:capacity].present?
-    #   @ads = @ads.includes(:product).where(products: { capacity: params[:capacity].to_i })
-    #   # @ads = @ads.select do |ad|
-    #   #   ad.product.capacity == params[:capacity].to_i
-    #   # end
-    # end
+    if params[:capacity].present?
+      @ads = @ads.where("title ILIKE ?", "%#{params[:capacity]}%")
+      # @ads = @ads.includes(:product).where(products: { capacity: params[:capacity].to_i })
+    end
     @ads_marker = ad_geocoding(@ads)
   end
 

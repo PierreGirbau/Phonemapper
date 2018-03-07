@@ -32,22 +32,6 @@
 #ads i {
   color: $green;
 }
-.filter-container {
-  background-color: white;
-  height: calc(100vh - 65px);
-  width: 400px;
-  position: sticky !important;
-  border-radius: 4px;
-  margin: 5px;
-  top: 80px;
-  bottom: 50px;
-  margin-left: 10px;
-  margin-right: 10px;
-  p, h3 {
-    margin: 5px 5px;
-    color: $green;
-  }
-}
 #map {
   position: sticky !important; /* !important to override Gmaps inline CSS */
   border-radius: 5px;
