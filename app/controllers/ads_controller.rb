@@ -8,6 +8,13 @@ class AdsController < ApplicationController
     else
       @ads = Ad.all.limit(50).order('price asc').page params[:page]
     end
+    if params[:price].present?
+      @ads = @ads.where(price: 0..params[:price].to_i)
+    end
+    if params[:capacity].present?
+      @ads = @ads.where("title ILIKE ?", "%#{params[:capacity]}%")
+      # @ads = @ads.includes(:product).where(products: { capacity: params[:capacity].to_i })
+    end
     @ads_marker = ad_geocoding(@ads)
   end
 

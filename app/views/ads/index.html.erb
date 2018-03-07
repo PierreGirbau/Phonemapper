@@ -1,12 +1,22 @@
 <div class="main-container">
-  <div class="filter-container">
-    <h3>Filters</h3>
+  <div class="sidebar">
+    <h3>Your search</h3>
     <hr>
-    <p>Price</p>
-    <p>Capacity</p>
+
+    <%= form_tag ads_path, method: :get do %>
+    <p>Filter by price</p>
+    <input name="price" type="range" min="0" max="1000" step="10" value="<%= params[:price] %>" data-orientation="vertical" id="price"/>
+    <%= params[:price] %>
+    <p>Filter by capacity</p>
+      <%= hidden_field_tag :query, params[:query], class: "form-control" %>
+      <%= text_field_tag :capacity, params[:capacity], class: "form form-control", placeholder: "32Go? 128Go? 256Go?" %>
+      <%= submit_tag "Filter", class: "btn btn-success" %>
+    <% end %>
+
   </div>
   <div id="ads">
     <h1><%= @ads.size %> results found</h1>
+
     <div class="clearfix">
       <% @ads.each do |ad| %>
       <div class="col-xs-12 col-sm-6">
@@ -28,6 +38,3 @@
   </div>
   <div id="map" style="width: 80%; height: 700px; "data-markers= "<%= @markers.to_json %>"></div>
 </div>
-
-
-
