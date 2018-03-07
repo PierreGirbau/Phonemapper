@@ -9,34 +9,35 @@ class ParuvenduScrappingService
     @brand = attributes[:brand]
   end
 
-  def page_iterator
+  def results_page_iterator
     sleep(rand(0.0..3.0))
     i = 1
     # Iterate over each page result while not empty
     loop do
       url = "https://www.paruvendu.fr/mondebarras/listefo/default/default/?fulltext=#{@name}&p=#{i}"
-      html_file = open(url).read
-      html_doc = Nokogiri::HTML(html_file)
+      puts url
+      html_doc = Nokogiri::HTML(open(url).read)
       break if html_doc.xpath('//li[@class="annonce"]').nil? || i > 3
       puts "============================ PAGE #{i} ============================="
-      page_crawler(html_doc)
+      ads_list_crawler(html_doc)
       i += 1
     end
   end
 
-  def page_crawler(html_doc)
+  def ads_list_crawler(html_doc)
     # Identify each iPhone with the h2 tag
+    sleep(rand(0.0..3.0))
     html_doc.search('.annonce a').each do |element|
-        sleep(rand(0.0..3.0))
         ad_url = element.attribute('href').value
+        puts ad_url
         img_div_array = []
-        ad = product_page_scrapper(ad_url, img_div_array)
+        ad = ad_page_scrapper(ad_url, img_div_array)
     end
 
       # ad_title = element.attribute('title').value
       # if ad_title.downcase.start_with?('iphone') || ad_title.downcase.start_with?('vend iphone') ||ad_title.downcase.start_with?('vends iphone')
 
-      #   # Save product_page url
+      #   # Save ad_page url
       #   ad_url = "https:#{element.attribute('href').value.split('?')[0]}"
 
       #   # Retrieve city from product_card
@@ -58,39 +59,35 @@ class ParuvenduScrappingService
 
       #   compare_ad_to_database(ad, img_div_array)
       # end
-  end
+  # end
 
-  def product_page_scrapper(ad_url, img_div_array)
-    # Open product_page
-    product_file = open(ad_url).read
-    product_doc = Nokogiri::HTML(product_file)
+  def ad_page_scrapper(ad_url, img_div_array)
+    # Open ad_page
+    ad_doc = Nokogiri::HTML(open(ad_url).read)
 
-    puts "--------------------"
-    puts ad_url
-
-    # Retrieve title from product_page
-    ad_title = product_doc.xpath('//meta[@itemprop="name"]').attribute('content').value
+    # Retrieve title from ad_page
+    ad_title = ad_doc.xpath('//meta[@itemprop="name"]').attribute('content').value
     puts ad_title
     return if !ad_title.downcase.start_with?('iphone') #|| !ad_title.downcase.start_with?('vend iphone') || !ad_title.downcase.start_with?('vends iphone')
 
-    # Retrieve price from product_page
-    ad_price = product_doc.xpath('//meta[@itemprop="price"]').attribute('content').value
+    # Retrieve price from ad_page
+    ad_price = ad_doc.xpath('//meta[@itemprop="price"]').attribute('content').value
     puts ad_price
 
-    # Retrieve location from product_page
-    ad_location = product_doc.xpath('//div[@class="infosann"]/p/strong').text.gsub(/[^0-9a-z, -]/i, '')
+    # Retrieve location from ad_page
+    ad_location = ad_doc.xpath('//div[@class="infosann"]/p/strong').text.gsub(/[^0-9a-z, -]/i, '')
     puts ad_location
 
-    # Retrieve date from product_page
+    # Retrieve date from ad_page
     ad_datetime = DateTime.now
     puts ad_datetime
 
-    # Retrieve description (as html string) from product_page
-    ad_description = product_doc.xpath('//div[@class="v2-txtdetail"]/div[@class="txt"]').inner_html.gsub(/<h2 style.*\z/, '').gsub(/.*<p itemprop="description">/, '').gsub('</p>', '')
+    # Retrieve description (as html string) from ad_page
+    ad_description = ad_doc.xpath('//div[@class="v2-txtdetail"]/div[@class="txt"]').inner_html.gsub(/<h2 style.*\z/, '').gsub(/.*<p itemprop="description">/, '').gsub('</p>', '')
     puts ad_description
 
-    # Retrieve images url from product_page
-    product_doc.xpath('//img[starts-with(@id, "miniphoto")]').each do |res|
+    # Retrieve images url from ad_page
+    ad_doc.xpath('//img[starts-with(@id, "miniphoto")]').each do |res|
         img_div_array << res.attribute('onclick').value.gsub(/.*.attr\('src','/, '').gsub(/\'\);\$\(\'.mini\'\).removeClass.*/, '')
     end
 

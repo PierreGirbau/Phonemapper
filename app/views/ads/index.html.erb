@@ -1,23 +1,21 @@
 <div class="main-container">
   <div class="filter-container">
-    <h3>Your search</h3>
+    <h3>Filters</h3>
     <hr>
-    <p><%= @ads.size %> ads found</p>
     <p>Price</p>
     <p>Capacity</p>
   </div>
   <div id="ads">
-    <h1><%= @ads.size %> ads found</h1>
+    <h1><%= @ads.size %> results found</h1>
     <div class="clearfix">
       <% @ads.each do |ad| %>
       <div class="col-xs-12 col-sm-6">
+        <!-- Button trigger modal -->
         <%= link_to "#", "data-toggle" => "modal", "data-target" => "#myModal#{ad.id}" do %>
         <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url(<%= Picture.where(ad: ad).first.url %>);">
           <div class="card-description">
             <%= ad.title %>
             <h3><%= ad.price %>€</h3>
-            <!-- Button trigger modal -->
-            <!-- <button type="button" class="btn btn-primary btn-lg btntest" data-toggle="modal" data-target="#myModal<%= ad.id %>">Open</button> -->
           </div>
         </div>
         <% end %>
