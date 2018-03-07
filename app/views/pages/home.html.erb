@@ -7,8 +7,9 @@
     <% @ads.each do |ad| %>
     <%= link_to ad_path(ad) do %>
     <div class="col-xs-12 col-sm-4 col-md-3">
+      <%  ad.pictures.first.nil? ? url = "https://images.unsplash.com/photo-1510878933023-e2e2e3942fb0?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=d8703554e1184ec9edb2713e254ec6c2&auto=format&fit=crop&w=1351&q=80" : url = ad.pictures.first.url  %>
       <%= link_to "#", "data-toggle" => "modal", "data-target" => "#myModal#{ad.id}" do %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url(<%= ad.pictures.first.url %>);">
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url(<%= url %>);">
         <div class="card-description">
           <%= ad.title %>
           <h3> <%= ad.price %> € </h3>
