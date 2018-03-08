@@ -16,7 +16,7 @@
       <!-- <input name="price" type="range" min="0" max="1000" step="10" value="<%= params[:price] %>" data-orientation="vertical" id="price"/> -->
     <p id"capacity_filter">Filter by capacity</p>
       <%= hidden_field_tag :query, params[:query], class: "form-control" %>
-      <%= text_field_tag :capacity, params[:capacity], class: "form form-control", placeholder: "32Go? 128Go? 256Go?" %>
+      <%= text_field_tag :capacity, params[:capacity], class: "form form-control", placeholder: "32Go? 128Go?" %>
       <%= submit_tag "Filter", class: "btn btn-success" %>
     <% end %>
 
