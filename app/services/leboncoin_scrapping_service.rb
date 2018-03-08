@@ -89,9 +89,8 @@ class LeboncoinScrappingService
 
     ad.save
     if !img_div_array.nil?
-      img_div_array.each do |pic_url|
-      Picture.create!(url: pic_url, ad: ad)
-     end
+      img_div_array.each { |pic_url| Picture.create!(url: pic_url, ad: ad) }
+    end
   end
 
   # def compare_ad_to_database(ad, img_div_array)
