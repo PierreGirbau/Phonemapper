@@ -16,8 +16,9 @@
   .form-control {
     width: 90%;
     margin-left: 5px;
+    box-shadow: none;
     border-radius: 5px;
-    border-style: none;
+    border-style: solid;
     color: $green;
     background-color: white;
   }
@@ -28,6 +29,7 @@
 }
 h3 {
   margin-top: 20px;
+  font-size: 34px;
 }
 .btn {
   margin-top: 15px;
@@ -43,7 +45,18 @@ h3 {
     background-color: $green;
   }
 }
-input[type="range"] {
-  margin-left: 10px;
-  width: 90%;
+#slider {
+  padding: 15px;
+}
+#price_filter {
+  padding-left: 5px;
+}
+#capacity_filter {
+  padding-left: 5px;
+}
+output {
+  text-align: center;
+  padding-top: 5px;
+  font-size: 18px;
+  color: $green;
 }
