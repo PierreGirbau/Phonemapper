@@ -9,7 +9,8 @@
     <div class="col-xs-12 col-sm-4 col-md-3">
       <%  ad.pictures.first.nil? ? url = ad.product.picture : url = ad.pictures.first.url  %>
       <%= link_to "#", "data-toggle" => "modal", "data-target" => "#myModal#{ad.id}" do %>
-      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.4)), url(<%= url %>);">
+
+      <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url(<%= url %>);">
         <div class="card-price">
           <%= ad.price %> €
         </div>
