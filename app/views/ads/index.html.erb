@@ -1,10 +1,8 @@
 <div class="main-container">
   <div class="sidebar">
     <h3><%= @ads.size %> phones found</h3>
-    <hr>
-
     <%= form_tag ads_path, method: :get do %>
-    <p id"price_filter">Filter by price</p>
+    <p id="price_filter">Filter by price</p>
       <div id="slider">
         <input  type="range"
                 min="10"
@@ -14,25 +12,12 @@
                 value="<%= params[:price].nil? ? 1000 : params[:price] %>" >
       </div>
       <output></output>
-      <p id"capacity_filter">Filter by capacity</p>
-      <%= hidden_field_tag :query, params[:query], class: "form-control" %>
-      <%= form_tag %>
-      <div class="flex-checkboxes">
-        <div>
-          <input type="radio" name="capacity" id="capacity_64" value="64" checked="checked" class="hidden">
-          <label class="btn" for="capacity_64Go">64 Go</label>
-        </div>
-        <div>
-          <input type="radio" name="capacity" id="capacity_128" value="128" checked="checked" class="hidden">
-          <label class="btn" for="capacity_32Go">128 Go</label>
-        </div>
-        <div>
-          <input type="radio" name="capacity" id="capacity_256" value="256" checked="checked" class="hidden">
-          <label class="btn" for="capacity_32Go">256 Go</label>
-        </div>
-      </div>
-      <%= submit_tag "Filter", class: "btn btn-success" %>
-    <% end %>
+      <p id="capacity_filter">Filter by capacity</p>
+        <%= hidden_field_tag :query, params[:query], class: "form-control" %>
+        <%= text_field_tag :capacity, params[:capacity], class: "form form-control", placeholder: "32Go? 128Go? 256Go?" %>
+        <p>Go</p>
+        <%= submit_tag "Filter", class: "btn btn-success" %>
+      <% end %>
   </div>
   <div id="ads">
     <div class="clearfix">
