@@ -17,7 +17,7 @@ class LeboncoinScrappingService
       puts url
       begin
         html_doc = Nokogiri::HTML(open(url).read)
-        break if !html_doc.xpath('//article[contains(@class, "noResult")]').text.empty? || i > 2
+        break if !html_doc.xpath('//article[contains(@class, "noResult")]').text.empty? || i > 3
         puts "============================ PAGE #{i} ============================="
         ads_list_crawler(html_doc)
       rescue => e

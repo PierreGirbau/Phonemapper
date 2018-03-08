@@ -2,12 +2,20 @@
   <div class="sidebar">
     <h3><%= @ads.size %> phones found</h3>
     <hr>
-
+    
     <%= form_tag ads_path, method: :get do %>
-    <p>Filter by price</p>
-    <input name="price" type="range" min="0" max="1000" step="10" value="<%= params[:price] %>" data-orientation="vertical" id="price"/>
-    <%= params[:price] %>
-    <p>Filter by capacity</p>
+    <p id"price_filter">Filter by price</p>
+      <div id="slider">
+        <input  type="range"
+                min="10"
+                max="1000"
+                data-rangeslider
+                name="price"
+                value="<%= params[:price].nil? ? 100 : params[:price] %>" >
+      </div>
+      <output></output>
+      <!-- <input name="price" type="range" min="0" max="1000" step="10" value="<%= params[:price] %>" data-orientation="vertical" id="price"/> -->
+    <p id"capacity_filter">Filter by capacity</p>
       <%= hidden_field_tag :query, params[:query], class: "form-control" %>
       <%= text_field_tag :capacity, params[:capacity], class: "form form-control", placeholder: "32Go? 128Go? 256Go?" %>
       <%= submit_tag "Filter", class: "btn btn-success" %>
