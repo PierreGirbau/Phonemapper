@@ -3,7 +3,7 @@ namespace :product do
   task leboncoin_scrapping: :environment do
     products = Product.all
     products.each do |p|
-      ScrapProductJob.perform(p.id)
+      ScrapProductJob.perform_now(p.id)
     end
   end
 
