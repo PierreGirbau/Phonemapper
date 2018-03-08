@@ -1,10 +1,17 @@
 <div class="main-container">
   <div class="sidebar">
-    <h3>Your search</h3>
+    <h3><%= @ads.size %> phones found</h3>
+    <hr>
+
     <%= form_tag ads_path, method: :get do %>
     <p id"price_filter">Filter by price</p>
       <div id="slider">
-        <input  type="range" min="100" max="1000" data-rangeslider name="price" value="<%= params[:price].nil? ? 100 : params[:price] %>" >
+        <input  type="range"
+                min="10"
+                max="1000"
+                data-rangeslider
+                name="price"
+                value="<%= params[:price].nil? ? 1000 : params[:price] %>" >
       </div>
       <output></output>
       <p id"capacity_filter">Filter by capacity</p>
@@ -28,7 +35,6 @@
     <% end %>
   </div>
   <div id="ads">
-    <h1><%= @ads.size %> results found</h1>
     <div class="clearfix">
       <% @ads.each do |ad| %>
       <div class="col-xs-12 col-sm-6">
