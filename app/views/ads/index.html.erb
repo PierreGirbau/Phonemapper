@@ -12,9 +12,9 @@
                 value="<%= params[:price].nil? ? 1000 : params[:price] %>" >
       </div>
       <output></output>
-      <p id="capacity_filter">Filter by capacity</p>
+      <p id="capacity_filter">Filter by capacity (Go)</p>
         <%= hidden_field_tag :query, params[:query], class: "form-control" %>
-        <%= text_field_tag :capacity, params[:capacity], class: "form form-control", placeholder: "32Go? 128Go? 256Go?" %>
+        <%= text_field_tag :capacity, params[:capacity], class: "form form-control", placeholder: "8/16/32/64/128/256" %>
         <%= submit_tag "Filter", class: "btn btn-success" %>
       <% end %>
   </div>
