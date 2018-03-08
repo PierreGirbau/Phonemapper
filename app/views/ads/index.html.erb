@@ -2,7 +2,7 @@
   <div class="sidebar">
     <h3><%= @ads.size %> phones found</h3>
     <hr>
-    
+
     <%= form_tag ads_path, method: :get do %>
     <p id"price_filter">Filter by price</p>
       <div id="slider">
@@ -11,7 +11,7 @@
                 max="1000"
                 data-rangeslider
                 name="price"
-                value="<%= params[:price].nil? ? 100 : params[:price] %>" >
+                value="<%= params[:price].nil? ? 1000 : params[:price] %>" >
       </div>
       <output></output>
       <!-- <input name="price" type="range" min="0" max="1000" step="10" value="<%= params[:price] %>" data-orientation="vertical" id="price"/> -->
