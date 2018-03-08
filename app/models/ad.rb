@@ -1,7 +1,6 @@
 class Ad < ApplicationRecord
   has_many :pictures
   belongs_to :product
-  paginates_per 6
 
   geocoded_by :location
   after_validation :geocode
