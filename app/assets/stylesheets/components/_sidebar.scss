@@ -14,8 +14,7 @@
     color: $green;
   }
   .form-control {
-    width: 90%;
-    margin-left: 5px;
+    width: 100%;
     box-shadow: none;
     border-radius: 5px;
     border-style: solid;
@@ -29,7 +28,10 @@
 }
 h3 {
   margin-top: 20px;
-  font-size: 28px;
+  font-size: 24px;
+}
+p {
+  font-size: 18px;
 }
 .btn {
   margin-top: 15px;
@@ -42,19 +44,6 @@ h3 {
   .btn-primary:hover {
     opacity: 0.9;
     background-color: $green;
-  }
-}
-.flex-checkboxes {
-  display: flex;
-  justify-content: space-around;
-  .btn {
-    background-color: $dark-gray;
-    color: white;
-    font-size: 16px;
-  }
-  .btn:hover {
-    opacity: 0.9;
-    background-color: $light-gray;
   }
 }
 #slider {
