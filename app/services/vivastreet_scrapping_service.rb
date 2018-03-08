@@ -31,8 +31,8 @@ class VivastreetScrappingService
     html_doc.search('a').each do |link|
       if (/http:\/\/www.vivastreet.com\/achat-vente-portables-mobile\/.*\/(iphone|apple).*\/\d+/).match?(link.attribute('href'))
         puts "======================================="
-        ad_url = link.attribute('href')
-        puts ad_url
+        ad_url = link.attribute('href').content
+        puts ad_url.class
 
         if Ad.find_by(url: ad_url).nil?
           puts "+++ Creating new ad +++"
@@ -87,7 +87,6 @@ class VivastreetScrappingService
     # Find corresponding product and return new ad
     product = Product.find_by(version: @version, capacity: 0, color: 'unknown', brand: @brand)
     ad = Ad.new(title: ad_title, description: ad_description, url: ad_url, date: ad_datetime, location: ad_location, price: ad_price, source: "vivastreet", product: product)
-# #    compare_ad_to_database(ad, img_div_array)
 
     ad.save
     if !img_div_array.nil?
@@ -96,4 +95,4 @@ class VivastreetScrappingService
   end
 end
 
-#VivastreetScrappingService.new(name: 'iPhone', version: "8", location: 'Paris', brand: "Apple").ad_page_scrapper("http://www.vivastreet.com/achat-vente-portables-mobile/paris-17eme-ardt-75017/iphone-5c-16go-debloque---garantie---facture/171014693") #.results_page_iterator
+#VivastreetScrappingService.new(name: 'iPhone', version: "8", location: 'Paris', brand: Brand.find_by(name: "Apple")).results_page_iterator
