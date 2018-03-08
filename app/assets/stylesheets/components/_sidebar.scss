@@ -29,24 +29,50 @@
 }
 h3 {
   margin-top: 20px;
-  font-size: 34px;
+  font-size: 28px;
 }
 .btn {
   margin-top: 15px;
-  margin-left: 75px;
+  border-style: none;
+  width: 100%;
 }
 .btn-primary {
   background-color: $green;
-  border-radius: 5px;
   box-shadow: 7px 9px 31px -13px rgba(0,0,0,0.75);
-  border-style: none;
   .btn-primary:hover {
     opacity: 0.9;
     background-color: $green;
   }
 }
+.flex-checkboxes {
+  display: flex;
+  justify-content: space-around;
+  .btn {
+    background-color: $dark-gray;
+    color: white;
+    font-size: 16px;
+  }
+  .btn:hover {
+    opacity: 0.9;
+    background-color: $light-gray;
+  }
+}
 #slider {
   padding: 15px;
+  .rangeslider__fill {
+    background: $green;
+  }
+  .rangeslider__handle {
+    background: white;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+  }
+  .rangeslider--horizontal {
+    height: 10px;
+  }
 }
 #price_filter {
   padding-left: 5px;
