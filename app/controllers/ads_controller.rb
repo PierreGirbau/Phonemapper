@@ -32,6 +32,7 @@ class AdsController < ApplicationController
     @ads_marker = Ad.where.not(latitude: nil, longitude: nil)
     @markers = @ads.map do |ad|
       {
+        id: ad.id,
         lat: ad.latitude,
         lng: ad.longitude,
       }

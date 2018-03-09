@@ -1,10 +1,41 @@
 import GMaps from 'gmaps/gmaps.js';
 
+function changeMarkerIcon(card, markers, iconType) {
+  const icons = {
+    default: "https://maps.gstatic.com/mapfiles/api-3/images/spotlight-poi2.png",
+/*    hover: "http://icons.iconarchive.com/icons/icons-land/vista-map-markers/48/Map-Marker-Bubble-Azure-icon.png"*/
+    hover: "http://noamsay.odns.fr/images/299087-64.png"
+  };
+
+  const id = card.dataset.id;
+
+  const marker = markers.find((marker) => {
+    return marker.id == id;
+  });
+
+  marker.setIcon(icons[iconType]);
+}
+
 const mapElement = document.getElementById('map');
+
 if (mapElement) { // don't try to build a map if there's no div#map to inject in
   const map = new GMaps({ el: '#map', lat: 0, lng: 0 });
+
+  // Markers
   const markers = JSON.parse(mapElement.dataset.markers);
   map.addMarkers(markers);
+
+  document.querySelectorAll(".card").forEach((card) => {
+    card.addEventListener('mouseover', (event) => {
+      changeMarkerIcon(card, map.markers, 'hover');
+    });
+
+    card.addEventListener('mouseout', (event) => {
+      changeMarkerIcon(card, map.markers, 'default');
+    });
+  });
+
+  // Zoom
   if (markers.length === 0) {
     map.setZoom(2);
   } else if (markers.length === 1) {
@@ -13,6 +44,8 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
   } else {
     map.fitLatLngBounds(markers);
   }
+
+  // Styling
   const styles = [
     {
         "featureType": "administrative",
@@ -275,7 +308,7 @@ if (mapElement) { // don't try to build a map if there's no div#map to inject in
             }
         ]
     }
-];
+  ];
   map.addStyle({
     styles: styles,
     mapTypeId: 'map_style'

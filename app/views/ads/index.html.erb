@@ -25,7 +25,7 @@
         <!-- Button trigger modal -->
         <%= link_to "#", "data-toggle" => "modal", "data-target" => "#myModal#{ad.id}" do %>
 
-        <div class="card" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url(<%= Picture.where(ad: ad).first&.url.nil? ? ad.product.picture : Picture.where(ad: ad).first.url %>);">
+        <div class="card" data-id="<%= ad.id %>" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.3)), url(<%= Picture.where(ad: ad).first&.url.nil? ? ad.product.picture : Picture.where(ad: ad).first.url %>);">
             <div class="card-price">
               <%= ad.price %> €
             </div>
