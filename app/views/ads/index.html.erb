@@ -22,7 +22,7 @@
       <br>
 <!--       <p id="capacity_filter">Filter by source</p>
       <br> -->
-      <%#= select_tag :source, options_from_collection_for_select(@ads, :source, :source), class: 'select2' %>
+          <%= select_tag :source, options_for_select(@sources, params[:source]), class: 'select2' %>
       <br>
       <%= submit_tag "Filter", class: "btn btn-success" %>
       <% end %>
