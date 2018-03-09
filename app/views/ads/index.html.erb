@@ -1,8 +1,10 @@
 <div class="main-container">
   <div class="sidebar">
     <h3><%= @ads.size %> phones found</h3>
+    <br>
     <%= form_tag ads_path, method: :get do %>
     <p id="price_filter">Filter by price</p>
+    <br>
       <div id="slider">
         <input  type="range"
                 min="10"
@@ -12,10 +14,17 @@
                 value="<%= params[:price].nil? ? 1000 : params[:price] %>" >
       </div>
       <output></output>
+      <br>
       <p id="capacity_filter">Filter by capacity (Go)</p>
+      <br>
         <%= hidden_field_tag :query, params[:query], class: "form-control" %>
-        <%= text_field_tag :capacity, params[:capacity], class: "form form-control", placeholder: "8/16/32/64/128/256" %>
-        <%= submit_tag "Filter", class: "btn btn-success" %>
+        <%= text_field_tag :capacity, params[:capacity], class: "form form-control", placeholder: "8 . 16 .  32 . 64 . 128 . 256" %>
+      <br>
+<!--       <p id="capacity_filter">Filter by source</p>
+      <br> -->
+      <%#= select_tag :source, options_from_collection_for_select(@ads, :source, :source), class: 'select2' %>
+      <br>
+      <%= submit_tag "Filter", class: "btn btn-success" %>
       <% end %>
   </div>
   <div id="ads">
